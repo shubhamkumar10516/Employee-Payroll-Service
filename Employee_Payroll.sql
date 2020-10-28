@@ -40,3 +40,20 @@ CREATE TABLE Employee_Department (deptId INT PRIMARY KEY, empId INT);
 
 INSERT INTO Employee_Department (deptId, empId) VALUES (1, 3), (2, 3), (3, 1), (2, 2);
 
+# redoing all queries
+
+SELECT e.id, e.name, (p.basic_pay - p.deductions) as salary, d.name as department_name FROM Employee as e, Payroll as p, Department d, Employee_Department as ed where e.id = p.id and  e.id = ed.empId and d.id = ed.deptId;   
+
+SELECT (p.basic_pay - p.deductions) as salary FROM Employee as e, Payroll as p WHERE e.id = p.id and e.name = 'Ram';
+
+UPDATE Employee SET gender = 'M' WHERE  name = 'Ram';
+
+SELECT e.gender, SUM(p.basic_pay-p.deductions) FROM Employee as e, Payroll as p WHERE e.id = p.id GROUP BY e.gender; 
+
+SELECT e.gender, AVG(p.basic_pay-p.deductions) FROM Employee as e, Payroll as p WHERE e.id = p.id GROUP BY e.gender; 
+
+SELECT e.gender, MIN(p.basic_pay-p.deductions) FROM Employee as e, Payroll as p WHERE e.id = p.id GROUP BY e.gender; 
+
+SELECT e.gender, MAX(p.basic_pay-p.deductions) FROM Employee as e, Payroll as p WHERE e.id = p.id GROUP BY e.gender; 
+
+
